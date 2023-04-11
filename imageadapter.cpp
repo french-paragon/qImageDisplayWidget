@@ -46,4 +46,8 @@ QImage ImageAdapter::getImage() const {
 
 }
 
+QVector<ImageAdapter::ChannelInfo> ImageAdapter::getOriginalChannelsInfos(QPoint const& pos) const {
+    return QVector<ImageAdapter::ChannelInfo>();
+}
+
 } //namespace QImageDisplay

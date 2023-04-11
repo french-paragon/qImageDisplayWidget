@@ -35,6 +35,12 @@ class ImageAdapter : public QObject
 {
     Q_OBJECT
 public:
+
+    struct ChannelInfo {
+        QString channelName;
+        QString channelValue;
+    };
+
     explicit ImageAdapter(QObject *parent = nullptr);
 
     virtual QSize getImageSize() const = 0;
@@ -46,6 +52,16 @@ public:
     }
 
     virtual QImage getImage() const;
+
+    /*!
+     * \brief getOriginalChannelsInfos return a description of the underlying image datas values
+     * \param pos the position in the image grid
+     * \return A list of channel name and value description.
+     *
+     * By default this function return an empty vector. You can re-implement it in your adapters if you want.
+     * Some classes (e.g. the image window) will use the description to display information to the end user.
+     */
+    virtual QVector<ChannelInfo> getOriginalChannelsInfos(QPoint const& pos) const;
 
 Q_SIGNALS:
 

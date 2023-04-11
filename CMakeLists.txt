@@ -31,6 +31,9 @@ set(LIB_SRC
     imagewidget.h
     overlay.cpp
     overlay.h
+    imagewindow.h
+    imagewindow.cpp
+    imagewindow.ui
 )
 
 add_library(

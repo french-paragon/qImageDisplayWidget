@@ -5,6 +5,7 @@
 #include <QImage>
 
 #include "imagewidget.h"
+#include "imagewindow.h"
 #include "imageadapter.h"
 
 class BasicImageAdapter : public QImageDisplay::ImageAdapter {
@@ -58,11 +59,11 @@ int main(int argc, char** argv) {
     BasicImageAdapter imageAdapter;
     imageAdapter.setImage(QString(argv[1]));
 
-    QImageDisplay::ImageWidget widget;
-    widget.setImage(&imageAdapter);
+    QImageDisplay::ImageWindow window;
+    window.setImage(&imageAdapter);
 
-    widget.resize(800, 600);
-    widget.show();
+    window.resize(800, 600);
+    window.show();
 
     return app.exec();
 }

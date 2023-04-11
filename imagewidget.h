@@ -52,15 +52,15 @@ public:
 
     void addOverlay(Overlay* drawable);
 
+    QPointF widgetToImageCoordinates(QPoint const& widget_pos) const;
+    QPointF imageToWidgetCoordinates(QPointF const& image_pos) const;
+
 Q_SIGNALS:
 
     void zoomChanged(int zoom_percent);
     void translationChanged(QPoint translation);
 
 protected:
-
-    QPointF widgetToImageCoordinates(QPoint const& widget_pos);
-    QPointF imageToWidgetCoordinates(QPointF const& image_pos);
 
     void paintEvent(QPaintEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;

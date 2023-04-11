@@ -180,7 +180,7 @@ void ImageWidget::setTranslation(const QPoint &translation)
     }
 }
 
-QPointF ImageWidget::widgetToImageCoordinates(QPoint const& widget_pos) {
+QPointF ImageWidget::widgetToImageCoordinates(QPoint const& widget_pos) const {
 
     QPoint middle = QPoint(rect().size().width(), rect().size().height())/2;
     QPointF src_img_coord = widget_pos - middle - _translation;
@@ -194,7 +194,7 @@ QPointF ImageWidget::widgetToImageCoordinates(QPoint const& widget_pos) {
     return src_img_coord;
 }
 
-QPointF ImageWidget::imageToWidgetCoordinates(QPointF const& image_pos) {
+QPointF ImageWidget::imageToWidgetCoordinates(QPointF const& image_pos) const {
 
     QPointF middle_img = QPoint(_img.size().width(), _img.size().height())/2;
     QPointF local_img_coord = image_pos - middle_img;
