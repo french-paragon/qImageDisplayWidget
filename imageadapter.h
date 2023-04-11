@@ -37,7 +37,7 @@ class ImageAdapter : public QObject
 public:
     explicit ImageAdapter(QObject *parent = nullptr);
 
-    virtual QSize getImageSize() const;
+    virtual QSize getImageSize() const = 0;
 
     virtual QColor getColorAtPoint(int x, int y) const = 0;
 

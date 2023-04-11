@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.5)
 
+option(buildExamples "Build the examples for the library" ON)
 
 set(LIB_NAME qImageWidget)
 
 include(CheckCXXCompilerFlag)
+get_directory_property(hasParent PARENT_DIRECTORY)
+
 project(${LIB_NAME} LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -37,4 +40,11 @@ ${LIB_SRC}
 
 target_link_libraries(${LIB_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-set(QIMAGEDISPLAYWIDGET_LIB ${LIB_NAME} PARENT_SCOPE)
+set(QIMAGEDISPLAYWIDGET_LIB ${LIB_NAME})
+if (hasParent)
+    set(QIMAGEDISPLAYWIDGET_LIB ${LIB_NAME} PARENT_SCOPE)
+endif()
+
+if (buildExamples)
+    add_subdirectory(examples)
+endif(buildExamples)
