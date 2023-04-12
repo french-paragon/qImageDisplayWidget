@@ -25,6 +25,8 @@ public:
 
 private:
     Ui::ImageWindow *ui;
+
+    QString _lastFileSaveDir;
 };
 
 

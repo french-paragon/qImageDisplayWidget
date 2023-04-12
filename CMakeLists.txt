@@ -34,6 +34,7 @@ set(LIB_SRC
     imagewindow.h
     imagewindow.cpp
     imagewindow.ui
+    resources/icons.qrc
 )
 
 add_library(

@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>artemus-icons/scalable/actions/close.svg</file>
+        <file>artemus-icons/scalable/actions/execute.svg</file>
+        <file>artemus-icons/scalable/actions/fileclose.svg</file>
+        <file>artemus-icons/scalable/actions/filenew.svg</file>
+        <file>artemus-icons/scalable/actions/fileopen.svg</file>
+        <file>artemus-icons/scalable/actions/filesave.svg</file>
+        <file>artemus-icons/scalable/actions/filesaveas.svg</file>
+        <file>artemus-icons/scalable/actions/search.svg</file>
+        <file>artemus-icons/scalable/mimetypes/text-x-generic.svg</file>
+        <file>artemus-icons/scalable/mimetypes/text-html.svg</file>
+        <file>artemus-icons/scalable/mimetypes/image-x-generic.svg</file>
+        <file>artemus-icons/scalable/mimetypes/application-pdf.svg</file>
+    </qresource>
+</RCC>

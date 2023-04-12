@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources/icons.qrc">
+    <normaloff>:/artemus-icons/scalable/mimetypes/image-x-generic.svg</normaloff>:/artemus-icons/scalable/mimetypes/image-x-generic.svg</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -31,6 +35,33 @@
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionsave_image"/>
+  </widget>
+  <action name="actionsave_image">
+   <property name="icon">
+    <iconset resource="resources/icons.qrc">
+     <normaloff>:/artemus-icons/scalable/actions/filesaveas.svg</normaloff>:/artemus-icons/scalable/actions/filesaveas.svg</iconset>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="toolTip">
+    <string>save image</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -40,6 +71,8 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

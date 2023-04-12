@@ -6,6 +6,11 @@
 
 #include <QEvent>
 #include <QMouseEvent>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QStandardPaths>
+
+inline void initGuiResources() { Q_INIT_RESOURCE(icons); }
 
 namespace QImageDisplay {
 
@@ -43,8 +48,12 @@ protected:
 
 ImageWindow::ImageWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::ImageWindow)
+    ui(new Ui::ImageWindow),
+    _lastFileSaveDir("")
 {
+
+    initGuiResources();
+
     ui->setupUi(this);
 
     ui->imageWidget->setMouseTracking(true);
@@ -80,6 +89,42 @@ ImageWindow::ImageWindow(QWidget *parent) :
         QString message = tmpl.arg(imagePos.x()).arg(imagePos.y()).arg(valueStr);
 
         ui->statusbar->showMessage(message);
+
+    });
+
+    connect(ui->actionsave_image, &QAction::triggered, this, [this] () {
+
+        if (ui->imageWidget->currentImage() == nullptr) {
+            return;
+        }
+
+        QString saveDir = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
+
+        if (!_lastFileSaveDir.isEmpty()) {
+            saveDir = _lastFileSaveDir;
+        }
+
+        QString filter= tr(" bmp (*.bmp);; jpg (*.jpg *.jpeg);; png (*.png);; tiff (*.tif *.tiff);;");
+
+        QString filePath = QFileDialog::getSaveFileName(this, tr("Save image as"), saveDir, filter);
+
+        if (filePath.isEmpty()) {
+            return;
+        }
+
+        QFileInfo infos(filePath);
+
+        _lastFileSaveDir = infos.absoluteDir().path();
+
+        QString saveFilePath = infos.absoluteFilePath();
+
+        QImage img = ui->imageWidget->currentImage()->getImage();
+
+        bool ok = img.save(saveFilePath);
+
+        if (!ok) {
+            QMessageBox::warning(this, tr("Could not save image"), tr("An error occured while saving the image"));
+        }
 
     });
 }
