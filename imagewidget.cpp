@@ -101,6 +101,20 @@ int ImageWidget::clipZoom(int rawZoom) {
     return zoom_percent;
 }
 
+void ImageWidget::overlayRequestedReptaint(QRect imageRegion) {
+
+    if (!imageRegion.isValid()) {
+        update();
+        return;
+    }
+
+    QTransform img2Widget = getImageToWidgetTransform();
+    QRect trsf = img2Widget.mapRect(imageRegion);
+
+    update(trsf);
+
+}
+
 void ImageWidget::addOverlay(Overlay* drawable) {
     _overlays.push_back(drawable);
 }

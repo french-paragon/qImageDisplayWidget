@@ -52,6 +52,17 @@ public:
 
     void addOverlay(Overlay* drawable);
 
+    inline QTransform getImageToWidgetTransform() const {
+
+        QSize s = rect().size();
+        QSize is = (_c_img.isNull()) ? QSize(_img.width()*_zoom/100, _img.height()*_zoom/100) : _c_img.size();
+
+        QTransform img2widget;
+        img2widget.translate(_translation.x()-(is.width() - s.width())/2, _translation.y()-(is.height() - s.height())/2);
+        img2widget.scale(_zoom/100., _zoom/100.);
+
+        return img2widget;
+    }
     QPointF widgetToImageCoordinates(QPoint const& widget_pos) const;
     QPointF imageToWidgetCoordinates(QPointF const& image_pos) const;
 
@@ -74,6 +85,8 @@ protected:
     void resetImage();
 
     static int clipZoom(int rawZoom);
+
+    void overlayRequestedReptaint(QRect imageRegion);
 
     QPoint _translation;
     int _zoom;

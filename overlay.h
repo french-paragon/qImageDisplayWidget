@@ -44,9 +44,16 @@ public:
         paintItemImpl(painter);
     }
 
+Q_SIGNALS:
+    void repaintingRequested(QRect imageArea);
+
 protected:
 
     virtual void paintItemImpl(QPainter* painter) const = 0;
+
+    inline QTransform imageToPaintArea() const {
+        return _imageToPaintArea;
+    }
 
     inline void drawPoint(QPainter* painter, QPointF const& point, QColor color, float radius) const {
         QPen pen;
