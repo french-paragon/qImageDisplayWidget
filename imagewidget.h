@@ -86,7 +86,7 @@ protected:
 
     static int clipZoom(int rawZoom);
 
-    void overlayRequestedReptaint(QRect imageRegion);
+    void overlayRequestedRepaint(QRect imageRegion);
 
     QPoint _translation;
     int _zoom;

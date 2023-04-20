@@ -39,8 +39,11 @@ class Overlay : public QObject
 public:
     explicit Overlay(QWidget *parent = nullptr);
 
-    inline void paintItem(QPainter* painter, QTransform const& imageToPaintArea) const {
+    inline void paintItem(QPainter* painter,
+                          QTransform const& imageToPaintArea,
+                          QSize const& paintAreaSize) const {
         _imageToPaintArea = imageToPaintArea;
+        _paintAreaSize = paintAreaSize;
         paintItemImpl(painter);
     }
 
@@ -53,6 +56,10 @@ protected:
 
     inline QTransform imageToPaintArea() const {
         return _imageToPaintArea;
+    }
+
+    inline QSize paintAreaSize() const {
+        return _paintAreaSize;
     }
 
     inline void drawPoint(QPainter* painter, QPointF const& point, QColor color, float radius) const {
@@ -106,6 +113,7 @@ protected:
 private:
 
     mutable QTransform _imageToPaintArea;
+    mutable QSize _paintAreaSize;
 };
 
 } // namespace QImageDisplay

@@ -101,7 +101,7 @@ int ImageWidget::clipZoom(int rawZoom) {
     return zoom_percent;
 }
 
-void ImageWidget::overlayRequestedReptaint(QRect imageRegion) {
+void ImageWidget::overlayRequestedRepaint(QRect imageRegion) {
 
     if (!imageRegion.isValid()) {
         update();
@@ -117,6 +117,7 @@ void ImageWidget::overlayRequestedReptaint(QRect imageRegion) {
 
 void ImageWidget::addOverlay(Overlay* drawable) {
     _overlays.push_back(drawable);
+    connect(drawable, &Overlay::repaintingRequested, this, &ImageWidget::overlayRequestedRepaint);
 }
 
 void ImageWidget::setZoom(int zp) {
@@ -253,7 +254,7 @@ void ImageWidget::paintEvent(QPaintEvent *) {
     img2widget.scale(_zoom/100., _zoom/100.);
 
     for (Overlay* o : _overlays) {
-        o->paintItem(&painter, img2widget);
+        o->paintItem(&painter, img2widget, size());
     }
 
 }
