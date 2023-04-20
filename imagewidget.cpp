@@ -277,6 +277,7 @@ void ImageWidget::mousePressEvent(QMouseEvent *e) {
 }
 void ImageWidget::mouseReleaseEvent(QMouseEvent *e) {
 
+    _previously_pressed = e->buttons();
     e->ignore();
 }
 
