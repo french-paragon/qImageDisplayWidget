@@ -254,7 +254,9 @@ void ImageWidget::paintEvent(QPaintEvent *) {
     img2widget.scale(_zoom/100., _zoom/100.);
 
     for (Overlay* o : _overlays) {
-        o->paintItem(&painter, img2widget, size());
+        if (o->display()) {
+            o->paintItem(&painter, img2widget, size());
+        }
     }
 
 }

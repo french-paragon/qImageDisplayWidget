@@ -37,6 +37,8 @@ class Overlay : public QObject
 {
     Q_OBJECT
 public:
+    Q_PROPERTY(bool display READ display WRITE setDisplay NOTIFY displayChanged)
+
     explicit Overlay(QWidget *parent = nullptr);
 
     inline void paintItem(QPainter* painter,
@@ -47,8 +49,13 @@ public:
         paintItemImpl(painter);
     }
 
+    bool display() const;
+    void setDisplay(bool newDisplay);
+
 Q_SIGNALS:
     void repaintingRequested(QRect imageArea);
+
+    void displayChanged();
 
 protected:
 
@@ -114,6 +121,8 @@ private:
 
     mutable QTransform _imageToPaintArea;
     mutable QSize _paintAreaSize;
+
+    bool _display;
 };
 
 } // namespace QImageDisplay

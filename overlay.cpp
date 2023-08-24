@@ -21,7 +21,28 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "./overlay.h"
 
 QImageDisplay::Overlay::Overlay(QWidget *parent) :
-    QObject(parent)
+    QObject(parent),
+    _display(true)
 {
+
+}
+
+
+namespace QImageDisplay {
+
+bool Overlay::display() const
+{
+    return _display;
+}
+
+void Overlay::setDisplay(bool newDisplay)
+{
+    if (_display == newDisplay)
+        return;
+    _display = newDisplay;
+    Q_EMIT displayChanged();
+    Q_EMIT repaintingRequested(QRect());
+
+}
 
 }
