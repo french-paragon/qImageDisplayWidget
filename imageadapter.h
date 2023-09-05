@@ -63,8 +63,13 @@ public:
      */
     virtual QVector<ChannelInfo> getOriginalChannelsInfos(QPoint const& pos) const;
 
+    inline void update() {
+        Q_EMIT imageDataChanged();
+    }
+
 Q_SIGNALS:
 
+    void imageDataChanged();
     void imageSizeChanged(QSize newSize);
     void imageValuesChanged(QRect regionChanged);
 

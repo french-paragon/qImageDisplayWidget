@@ -145,6 +145,7 @@ void ImageWidget::setImage(ImageAdapter *img) {
     if (_currentImageDataBlock != nullptr) {
 
         disconnect(_currentImageDataBlock, &QObject::destroyed, this, &ImageWidget::imageDeleted);
+        disconnect(_currentImageDataBlock, &ImageAdapter::imageDataChanged, this, &ImageWidget::resetImage);
         disconnect(_currentImageDataBlock, &ImageAdapter::imageSizeChanged, this, &ImageWidget::resetImage);
         disconnect(_currentImageDataBlock, &ImageAdapter::imageValuesChanged, this, &ImageWidget::resetImage);
     }
@@ -154,6 +155,7 @@ void ImageWidget::setImage(ImageAdapter *img) {
     if (img != nullptr) {
 
         connect(_currentImageDataBlock, &QObject::destroyed, this, &ImageWidget::imageDeleted);
+        connect(_currentImageDataBlock, &ImageAdapter::imageDataChanged, this, &ImageWidget::resetImage);
         connect(_currentImageDataBlock, &ImageAdapter::imageSizeChanged, this, &ImageWidget::resetImage);
         connect(_currentImageDataBlock, &ImageAdapter::imageValuesChanged, this, &ImageWidget::resetImage);
 
