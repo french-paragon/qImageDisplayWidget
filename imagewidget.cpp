@@ -126,7 +126,7 @@ void ImageWidget::setZoom(int zp) {
 
     if (zoom_percent != _zoom) {
         _zoom = zoom_percent;
-        emit zoomChanged(zoom_percent);
+		Q_EMIT zoomChanged(zoom_percent);
 
         if (hasImage()) {
             cachedZoomed();
